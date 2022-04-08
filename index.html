@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>ChartJS - Dashboard</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: monospace;
+            }
+
+            h1{
+                width: fit-content;
+                margin: 0 auto;
+                font-size: 2.5rem;
+                color: rgb(255, 99, 132);
+            }
+
+            h1::after{
+                content: '';
+                height: 5px;
+                display: block;
+                background: rgb(54, 162, 235);
+            }
+
+            .graficos{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                margin-top: 30px;
+            }
+
+            .graficos .grafico{
+                width: 45%;
+                min-width: 400px;
+                /* margin-bottom: 20px; */
+            }
+
+            main{
+                min-height: calc(100vh - 50px);
+                padding-top: 30px;
+            }
+
+            footer{
+                height: 50px;
+                background:rgb(54, 162, 235);
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.1rem;
+            }
+
+            a{
+                color: white;
+                transition-duration: 0.3s;
+            }
+            
+            a:hover{
+                color:white;
+                transition-duration: 0.3s;
+                font-size: 1.1em;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <h1>Gráficos com ChartJS</h1>
+            <div class="graficos">
+                <div class="grafico">
+                    <canvas id="grafico1"></canvas>
+                </div>
+                <div class="grafico">
+                    <canvas id="grafico2"></canvas>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>Página criada por <a target="_blank" href="https://github.com/AgdaTaniguchi">Agda Taniguchi</a></p>
+        </footer>
+    </body>
+</html>
+
+<script>
+    const horarios = [
+        '12:00',
+        '13:00',
+        '14:00',
+        '15:00',
+        '16:00',
+        '17:00',
+    ];
+  
+    const dadosGrafico1 = {
+        labels: horarios,
+        datasets: [
+            {
+            label: 'Temperatura',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [30, 29, 28, 25, 22, 23],
+            },
+            {
+            label: 'Umidade',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            data: [80, 82, 80, 85, 80, 83],
+            }
+        ]
+    };
+  
+    const config = {
+        type: 'line',
+        data: dadosGrafico1,
+        options: {}
+    };
+    
+    const meses = [
+        'Janeiro',
+        'Fevereiro',
+        'Março',
+        'Abril',
+        'Maio',
+        'Junho',
+    ];
+  
+    const dadosGrafico2 = {
+        labels: meses,
+        datasets: [
+            {
+            label: 'Temperatura média',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [22, 24, 27, 23, 20, 18],
+            },
+            {
+            label: 'Umidade média',
+            backgroundColor: 'rgb(54, 162, 235)',
+            borderColor: 'rgb(54, 162, 235)',
+            data: [90, 89, 93, 87, 88, 82],
+            }
+        ]
+    };
+  
+    const config2 = {
+        type: 'bar',
+        data: dadosGrafico2,
+        options: {}
+    };
+</script>
+
+<script>
+    const grafico1 = new Chart(document.getElementById('grafico1'), config);
+    const grafico2 = new Chart(document.getElementById('grafico2'), config2);
+</script>  
